@@ -16,7 +16,7 @@ class MovieController {
     var movies: [Movie] = []
     
     //MARK: - Functions
-    func fetchMovie(searchTerm: String, completion: @escaping(Movie?) -> Void) {
+    func fetchMovies(searchTerm: String, completion: @escaping([Movie]?) -> Void) {
         guard let baseURL = URL(string: "https://ghibliapi.herokuapp.com") else {return}
         let movieComponent = baseURL.appendingPathComponent("films")
         let finalURL = movieComponent.appendingPathComponent(searchTerm)
@@ -32,13 +32,13 @@ class MovieController {
             if let data = data {
                 do {
                     // decode the data
-                    let movie = try JSONDecoder().decode(Movie.self, from: data)
-                    completion(movie) //the code breaks here why???
+                    let movies = try JSONDecoder().decode([Movie].self, from: data)
+                    completion(movies) //the code breaks here why???
                 } catch {
                     print("error fetching the movies")
                     completion(nil);return
                 }
             }
         }.resume()
-    }
+     }
 }

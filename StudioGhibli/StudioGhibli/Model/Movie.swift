@@ -15,15 +15,8 @@ struct Movie: Codable {
     var director: String
     var description: String
     var releaseDate: String
-    
-//    init(title: String, director: String, description: String, releaseDate: String) {
-//        self.title = title
-//        self.description = description
-//        self.director = director
-//        self.releaseDate = releaseDate
-//    }
-    
-    enum codingKeys:String, CodingKey {
+
+    enum CodingKeys:String, CodingKey {
         case releaseDate = "release_date"
         case title = "title"
         case director = "director"

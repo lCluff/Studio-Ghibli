@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieListTableViewController: UITableViewController {
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,7 +17,7 @@ class MovieListTableViewController: UITableViewController {
     // MAR
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        MovieController.sharedInstance.fetchMovie(searchTerm: "") { (characters) in
+        MovieController.sharedInstance.fetchMovies(searchTerm: "") { (characters) in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -43,7 +43,7 @@ class MovieListTableViewController: UITableViewController {
             if let detailViewController = segue.destination as? MovieDetailViewController, let selectedRow = tableView.indexPathForSelectedRow?.row {
               let movie = MovieController.sharedInstance.movies[selectedRow]
                 //another break in code
-                //detailViewController.updateViews(movie: Movie) = movie
+                detailViewController.self.updateViews(movie: Movie) = movie
             }
         }
     }
